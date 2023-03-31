@@ -1,0 +1,22 @@
+# ninja log v5
+13	145	7018977645232406	CMakeFiles/counter.dir/src/Inputcontroller.cpp.obj	daafd954cccffac5
+21	291	7007829876782964	CMakeFiles/counter.dir/src/Team.cpp.obj	8e7903276a8b44c6
+12	131	7017072865246595	CMakeFiles/counter.dir/src/IOcontroller.cpp.obj	18f4e5ac3fee346b
+22	2166	7019067700978022	CMakeFiles/counter.dir/src/GameController.cpp.obj	657c7c5c20e4b7ce
+29	2031	7019067699628060	CMakeFiles/counter.dir/src/Player.cpp.obj	b51e0c8b5cd6ca88
+28	1789	7019056386488506	CMakeFiles/counter.dir/src/Weapon.cpp.obj	3bd67857c900d2ef
+1054	1436	7019880679445354	counter.exe	2d5a28c0a6ce027d
+4	1053	7019880675695188	CMakeFiles/counter.dir/main.cpp.obj	979e7bfac5201831
+37	1345	7019056381688518	CMakeFiles/counter.dir/src/OutputController.cpp.obj	944acb8c2e27a54
+1	270	7019910251227892	build.ninja	52ce1bde5e8b4e4e
+19	2199	7019897531562626	Google_tests/lib/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj	7a1ffc8797c0cc53
+13	1756	7019067696728040	CMakeFiles/counter.dir/src/InputController.cpp.obj	9fdce1cc9e84c5f8
+6	1761	7019898075564746	Google_tests/CMakeFiles/Google_Tests_run.dir/unit_tests.cpp.obj	44daad8d65e71037
+9	10126	7019897610553601	Google_tests/lib/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj	f24b51f63c7b9c1a
+10128	12924	7019897638834536	lib/libgtest.a	35ec39e58d598ec9
+12924	13008	7019897639615785	lib/libgtest_main.a	45edd284b02f2c81
+1761	6123	7019898119002026	Google_tests/Google_Tests_run.exe	1510693955fb7175
+5	2164	7019910406769232	Google_tests/CMakeFiles/Google_Tests_run.dir/unit_tests.cpp.obj	a842fbb757376da7
+2165	6520	7019910450206864	Google_tests/Google_Tests_run.exe	1510693955fb7175
+6	2324	7019917000535064	Google_tests/CMakeFiles/Google_Tests_run.dir/unit_tests.cpp.obj	a842fbb757376da7
+2325	6935	7019917046564677	Google_tests/Google_Tests_run.exe	1510693955fb7175
