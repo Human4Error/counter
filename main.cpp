@@ -1,5 +1,3 @@
-
-
 #include <iostream>
 #include "src/GameController.h"
 #include "src/InputController.h"
