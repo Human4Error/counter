@@ -182,10 +182,38 @@ build install/strip: phony CMakeFiles/install/strip.util
 
 build cmake_object_order_depends_target_Google_Tests_run: phony || cmake_object_order_depends_target_gtest cmake_object_order_depends_target_gtest_main
 
-build Google_tests/CMakeFiles/Google_Tests_run.dir/unit_tests.cpp.obj: CXX_COMPILER__Google_Tests_run_Debug C$:/Users/Alireza/CLionProjects/counter/Google_tests/unit_tests.cpp || cmake_object_order_depends_target_Google_Tests_run
-  DEP_FILE = Google_tests\CMakeFiles\Google_Tests_run.dir\unit_tests.cpp.obj.d
+build Google_tests/CMakeFiles/Google_Tests_run.dir/GamecontrollerTEST.cpp.obj: CXX_COMPILER__Google_Tests_run_Debug C$:/Users/Alireza/CLionProjects/counter/Google_tests/GamecontrollerTEST.cpp || cmake_object_order_depends_target_Google_Tests_run
+  DEP_FILE = Google_tests\CMakeFiles\Google_Tests_run.dir\GamecontrollerTEST.cpp.obj.d
   FLAGS = -g
-  INCLUDES = -IC:/Users/Alireza/CLionProjects/counter/Google_tests/lib/googlemock/include -IC:/Users/Alireza/CLionProjects/counter/Google_tests/lib/googlemock -isystem C:/Users/Alireza/CLionProjects/counter/Google_tests/lib/googletest/include -isystem C:/Users/Alireza/CLionProjects/counter/Google_tests/lib/googletest
+  INCLUDES = -IC:/Users/Alireza/CLionProjects/counter/Google_tests/lib/googlemock/include -IC:/Users/Alireza/CLionProjects/counter/Google_tests/lib/googlemock -IC:/Users/Alireza/CLionProjects/counter/Google_tests/../src -isystem C:/Users/Alireza/CLionProjects/counter/Google_tests/lib/googletest/include -isystem C:/Users/Alireza/CLionProjects/counter/Google_tests/lib/googletest
+  OBJECT_DIR = Google_tests\CMakeFiles\Google_Tests_run.dir
+  OBJECT_FILE_DIR = Google_tests\CMakeFiles\Google_Tests_run.dir
+
+build Google_tests/CMakeFiles/Google_Tests_run.dir/InputControllerTEST.cpp.obj: CXX_COMPILER__Google_Tests_run_Debug C$:/Users/Alireza/CLionProjects/counter/Google_tests/InputControllerTEST.cpp || cmake_object_order_depends_target_Google_Tests_run
+  DEP_FILE = Google_tests\CMakeFiles\Google_Tests_run.dir\InputControllerTEST.cpp.obj.d
+  FLAGS = -g
+  INCLUDES = -IC:/Users/Alireza/CLionProjects/counter/Google_tests/lib/googlemock/include -IC:/Users/Alireza/CLionProjects/counter/Google_tests/lib/googlemock -IC:/Users/Alireza/CLionProjects/counter/Google_tests/../src -isystem C:/Users/Alireza/CLionProjects/counter/Google_tests/lib/googletest/include -isystem C:/Users/Alireza/CLionProjects/counter/Google_tests/lib/googletest
+  OBJECT_DIR = Google_tests\CMakeFiles\Google_Tests_run.dir
+  OBJECT_FILE_DIR = Google_tests\CMakeFiles\Google_Tests_run.dir
+
+build Google_tests/CMakeFiles/Google_Tests_run.dir/OutputControllerTEST.cpp.obj: CXX_COMPILER__Google_Tests_run_Debug C$:/Users/Alireza/CLionProjects/counter/Google_tests/OutputControllerTEST.cpp || cmake_object_order_depends_target_Google_Tests_run
+  DEP_FILE = Google_tests\CMakeFiles\Google_Tests_run.dir\OutputControllerTEST.cpp.obj.d
+  FLAGS = -g
+  INCLUDES = -IC:/Users/Alireza/CLionProjects/counter/Google_tests/lib/googlemock/include -IC:/Users/Alireza/CLionProjects/counter/Google_tests/lib/googlemock -IC:/Users/Alireza/CLionProjects/counter/Google_tests/../src -isystem C:/Users/Alireza/CLionProjects/counter/Google_tests/lib/googletest/include -isystem C:/Users/Alireza/CLionProjects/counter/Google_tests/lib/googletest
+  OBJECT_DIR = Google_tests\CMakeFiles\Google_Tests_run.dir
+  OBJECT_FILE_DIR = Google_tests\CMakeFiles\Google_Tests_run.dir
+
+build Google_tests/CMakeFiles/Google_Tests_run.dir/PlayerTEST.cpp.obj: CXX_COMPILER__Google_Tests_run_Debug C$:/Users/Alireza/CLionProjects/counter/Google_tests/PlayerTEST.cpp || cmake_object_order_depends_target_Google_Tests_run
+  DEP_FILE = Google_tests\CMakeFiles\Google_Tests_run.dir\PlayerTEST.cpp.obj.d
+  FLAGS = -g
+  INCLUDES = -IC:/Users/Alireza/CLionProjects/counter/Google_tests/lib/googlemock/include -IC:/Users/Alireza/CLionProjects/counter/Google_tests/lib/googlemock -IC:/Users/Alireza/CLionProjects/counter/Google_tests/../src -isystem C:/Users/Alireza/CLionProjects/counter/Google_tests/lib/googletest/include -isystem C:/Users/Alireza/CLionProjects/counter/Google_tests/lib/googletest
+  OBJECT_DIR = Google_tests\CMakeFiles\Google_Tests_run.dir
+  OBJECT_FILE_DIR = Google_tests\CMakeFiles\Google_Tests_run.dir
+
+build Google_tests/CMakeFiles/Google_Tests_run.dir/WeaponTEST.cpp.obj: CXX_COMPILER__Google_Tests_run_Debug C$:/Users/Alireza/CLionProjects/counter/Google_tests/WeaponTEST.cpp || cmake_object_order_depends_target_Google_Tests_run
+  DEP_FILE = Google_tests\CMakeFiles\Google_Tests_run.dir\WeaponTEST.cpp.obj.d
+  FLAGS = -g
+  INCLUDES = -IC:/Users/Alireza/CLionProjects/counter/Google_tests/lib/googlemock/include -IC:/Users/Alireza/CLionProjects/counter/Google_tests/lib/googlemock -IC:/Users/Alireza/CLionProjects/counter/Google_tests/../src -isystem C:/Users/Alireza/CLionProjects/counter/Google_tests/lib/googletest/include -isystem C:/Users/Alireza/CLionProjects/counter/Google_tests/lib/googletest
   OBJECT_DIR = Google_tests\CMakeFiles\Google_Tests_run.dir
   OBJECT_FILE_DIR = Google_tests\CMakeFiles\Google_Tests_run.dir
 
@@ -197,7 +225,7 @@ build Google_tests/CMakeFiles/Google_Tests_run.dir/unit_tests.cpp.obj: CXX_COMPI
 #############################################
 # Link the executable Google_tests\Google_Tests_run.exe
 
-build Google_tests/Google_Tests_run.exe: CXX_EXECUTABLE_LINKER__Google_Tests_run_Debug Google_tests/CMakeFiles/Google_Tests_run.dir/unit_tests.cpp.obj | lib/libgtest.a lib/libgtest_main.a lib/libgtest.a || lib/libgtest.a lib/libgtest_main.a
+build Google_tests/Google_Tests_run.exe: CXX_EXECUTABLE_LINKER__Google_Tests_run_Debug Google_tests/CMakeFiles/Google_Tests_run.dir/GamecontrollerTEST.cpp.obj Google_tests/CMakeFiles/Google_Tests_run.dir/InputControllerTEST.cpp.obj Google_tests/CMakeFiles/Google_Tests_run.dir/OutputControllerTEST.cpp.obj Google_tests/CMakeFiles/Google_Tests_run.dir/PlayerTEST.cpp.obj Google_tests/CMakeFiles/Google_Tests_run.dir/WeaponTEST.cpp.obj | lib/libgtest.a lib/libgtest_main.a lib/libgtest.a || lib/libgtest.a lib/libgtest_main.a
   FLAGS = -g
   LINK_LIBRARIES = lib/libgtest.a  lib/libgtest_main.a  lib/libgtest.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = Google_tests\CMakeFiles\Google_Tests_run.dir
