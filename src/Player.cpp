@@ -14,11 +14,11 @@ void Player::set_Is_alive(bool t) {
     m_player_is_alive = t;
 }
 
-const TEAM_ID Player::get_team_ID() const {
+TEAM_ID Player::get_team_ID() const {
     return m_teamID;
 }
 
-const std::string Player::get_name() const {
+std::string Player::get_name() const {
     return m_username;
 }
 
@@ -155,7 +155,7 @@ bool Team::check_team_is_full(TEAM_ID teamId) const {
 
 }
 
-Player &Team::return_PLayer_by_username(std::string username) {
+Player &Team::return_PLayer_by_username(std::string& username) {
     auto it = m_CT_player_list.begin();
     bool found = false;
     for (it = m_CT_player_list.begin(); it < m_CT_player_list.end(); ++it) {
@@ -176,7 +176,8 @@ Player &Team::return_PLayer_by_username(std::string username) {
     return *it;
 }
 
-bool Team::find_player_by_username(std::string username) {
+bool Team::find_player_by_username(std::string& username) const {
+
 
     for (const auto& p: m_CT_player_list) {
         if (p.get_name() == username) {
@@ -287,7 +288,7 @@ void Team::print_lists_ct() {
         std::string line = std::to_string(rank) + " " + it->get_name() + " " +
                            std::to_string(it->getNumber_of_kills()) + " " +
                            std::to_string(it->getNumber_of_deaths());
-        m_OutputFormat.print_line(line);
+        OutputFormat::print_line(line);
         rank++;
     }
 
@@ -300,7 +301,7 @@ void Team::print_lists_t() {
         std::string line = std::to_string(rank) + " " + it->get_name() + " " +
                            std::to_string(it->getNumber_of_kills()) + " " +
                            std::to_string(it->getNumber_of_deaths());
-        m_OutputFormat.print_line(line);
+        OutputFormat::print_line(line);
         rank++;
     }
 }

@@ -12,28 +12,49 @@
 #include <sstream>
 #include "GameController.h"
 
+class InputControllerBase {
+public:
 
-class InputController {
+    virtual void start_cli(GameControllerBase *game_con) = 0;
+
+private:
+    virtual uint32_t read_num_rounds() = 0;
+
+    virtual uint32_t read_round_num_CMD() = 0;
+
+    virtual std::string read_one_line_cmd() = 0;
+
+    virtual void setup_start_round(GameControllerBase *game_con) = 0;
+
+    virtual void result_end_round(GameControllerBase *game_con) = 0;
+
+    virtual void translate_string_2_method(std::string cmd, GameControllerBase *game_con) = 0;
+
+
+};
+
+
+class InputController : public InputControllerBase {
 
 public:
     InputController() = default;
 
     virtual ~InputController() = default;
 
-    void start_cli(GameController *game_con);
+    void start_cli(GameControllerBase *game_con) override;
 
 private:
-    uint32_t read_num_rounds();
+    uint32_t read_num_rounds() override;
 
-    uint32_t read_round_num_CMD();
+    uint32_t read_round_num_CMD() override;
 
-    std::string read_one_line_cmd();
+    std::string read_one_line_cmd() override;
 
-    void setup_start_round(GameController *game_con);
+    void setup_start_round(GameControllerBase *game_con) override;
 
-    void result_end_round(GameController *game_con);
+    void result_end_round(GameControllerBase *game_con) override;
 
-    void translate_string_2_method(std::string cmd, GameController *game_con);
+    void translate_string_2_method(std::string cmd, GameControllerBase *game_con) override;
 
 
 };

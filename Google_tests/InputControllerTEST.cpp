@@ -3,13 +3,12 @@
 //
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
+#include "InputController.h"
 
 
 
 
-/*
-TEST(SampleTest,test1){
-    ASSERT_EQ(1, 1);
-    ASSERT_EQ(1, 1);
-    ASSERT_EQ(1, 1);
-}*/
+TEST(InputConTest,String2CommandAddUser){
+    InputController in_con;
+
+}

@@ -3,7 +3,7 @@
 //
 #include "InputController.h"
 
-void InputController::start_cli(GameController *game_con) {
+void InputController::start_cli(GameControllerBase  *game_con) {
 
     uint32_t num_rounds = read_num_rounds();
     for (int i = 0; i < num_rounds; ++i) {
@@ -38,17 +38,17 @@ std::string InputController::read_one_line_cmd() {
     return temp_str;
 }
 
-void InputController::setup_start_round(GameController *game_con) {
+void InputController::setup_start_round(GameControllerBase *game_con) {
     game_con->start_round();
 }
 
-void InputController::result_end_round(GameController *game_con) {
+void InputController::result_end_round(GameControllerBase *game_con) {
     game_con->result_end_round();
 }
 
-void InputController::translate_string_2_method(std::string cmd, GameController *game_con) {
+void InputController::translate_string_2_method(std::string cmd, GameControllerBase *game_con) {
     std::stringstream cmd_2_process(cmd);
-    std::string command_type("");
+    std::string command_type;
     cmd_2_process >> command_type;
     std::string username;
     std::string time;

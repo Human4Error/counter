@@ -11,17 +11,14 @@
 
 
 TEST(OutoutConTest, coutString) {
+
     OutputFormat test_obj;
-
     std::string expected = "This is a test output";
-
     std::stringstream buffer;
     // Redirect std::cout to buffer
     std::streambuf *prevcoutbuf = std::cout.rdbuf(buffer.rdbuf());
 
-    // BEGIN: Code being tested
     test_obj.print_line(expected);
-    // END:   Code being tested
 
     // Use the string value of buffer to compare against expected output
     std::string text = buffer.str();

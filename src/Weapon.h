@@ -7,7 +7,7 @@
 
 #include <string>
 #include <vector>
-#include <stdint.h>
+#include <cstdint>
 
 typedef enum WeaponType {
     HEAVY_WP,
@@ -20,7 +20,23 @@ typedef enum WeaponUser_t {
     FREE_FOR_ALL,
 } WEAPON_USER_TYPE;
 
-class Weapon {
+class WeaponBase {
+public:
+    [[nodiscard]] virtual const std::string &getMName() const = 0;
+
+    [[nodiscard]] virtual uint32_t getMDamage() const = 0;
+
+    [[nodiscard]] virtual uint32_t getMPrice() const = 0;
+
+    [[nodiscard]] virtual uint32_t getKillReward() const = 0;
+
+    [[nodiscard]] virtual WEAPON_TYPE getWpType() const = 0;
+
+    [[nodiscard]] virtual WEAPON_USER_TYPE getWpUser() const = 0;
+
+};
+
+class Weapon : public WeaponBase {
 
 public:
 
@@ -35,20 +51,20 @@ public:
 
     ~Weapon() = default;
 
-    const std::string &getMName() const;
+    [[nodiscard]] const std::string &getMName() const override;
 
-    uint32_t getMDamage() const;
+    [[nodiscard]] uint32_t getMDamage() const override;
 
-    uint32_t getMPrice() const;
+    [[nodiscard]] uint32_t getMPrice() const override;
 
-    uint32_t getKillReward() const;
+    [[nodiscard]] uint32_t getKillReward() const override;
 
-    WEAPON_TYPE getWpType() const;
+    [[nodiscard]] WEAPON_TYPE getWpType() const override;
 
-    WEAPON_USER_TYPE getWpUser() const;
+    [[nodiscard]] WEAPON_USER_TYPE getWpUser() const override;
 
 private:
-    std::string m_name = "";
+    std::string m_name;
     uint32_t m_damage{0};
     uint32_t m_price{0};
     uint32_t m_Kill_reward{0};
@@ -56,28 +72,32 @@ private:
     WEAPON_USER_TYPE m_wp_user{};
 };
 
-class WeaponSets {
+class WeaponSetsBase {
+public:
+    virtual std::vector<Weapon>::iterator findWP(std::string wp_name, bool &find_that_wp) = 0;
+};
+
+class WeaponSets : public WeaponSetsBase {
 public:
     WeaponSets();
 
     ~WeaponSets() = default;
 
+    std::vector<Weapon>::iterator findWP(std::string wp_name, bool &find_that_wp) override;
 
-    std::vector<Weapon>::iterator findWP(std::string wp_name, bool &find_that_wp);
+    /// dont use in this project.
+    [[maybe_unused]] void addHeavyWP(const Weapon& wp);
 
+    [[maybe_unused]] void addLightWP(const Weapon& wp);
 
-    void addHeavyWP(Weapon wp);
-
-    void addLightWP(Weapon wp);
-
-    void addMeleeWP(Weapon wp);
+    [[maybe_unused]] void addMeleeWP(const Weapon& wp);
 
 private:
     std::vector<Weapon>::iterator findWP_in_list(std::vector<Weapon> &wp_list, std::string &wp_name);
 
     std::vector<Weapon> list_Heavy_WP;
     std::vector<Weapon> list_Light_WP;
-    std::vector<Weapon> list_Mele_WP;
+    std::vector<Weapon> list_Melee_WP;
 
 };
 

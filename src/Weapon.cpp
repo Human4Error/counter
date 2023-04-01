@@ -62,8 +62,8 @@ WeaponSets::WeaponSets() {
     list_Light_WP.emplace_back("UPS-S", 13, 300, 225,
                                LIGHT_WP, COUNTER_TERRORIST_WP);
 
-    list_Mele_WP.emplace_back("knife", 43, 0, 500,
-                              MELE_WP, FREE_FOR_ALL);
+    list_Melee_WP.emplace_back("knife", 43, 0, 500,
+                               MELE_WP, FREE_FOR_ALL);
 
 }
 
@@ -79,8 +79,8 @@ std::vector<Weapon>::iterator WeaponSets::findWP(std::string wp_name, bool &find
         find_that_wp = true;
         return it1;
     }
-    it1 = findWP_in_list(list_Mele_WP, wp_name);
-    if (it1 != list_Mele_WP.end()) {
+    it1 = findWP_in_list(list_Melee_WP, wp_name);
+    if (it1 != list_Melee_WP.end()) {
         find_that_wp = true;
         return it1;
     }
@@ -88,16 +88,16 @@ std::vector<Weapon>::iterator WeaponSets::findWP(std::string wp_name, bool &find
     return it1;
 }
 
-void WeaponSets::addHeavyWP(Weapon wp) {
+[[maybe_unused]] void WeaponSets::addHeavyWP(const Weapon& wp) {
     list_Heavy_WP.push_back(wp);
 }
 
-void WeaponSets::addLightWP(Weapon wp) {
+void WeaponSets::addLightWP(const Weapon& wp) {
     list_Light_WP.push_back(wp);
 }
 
-void WeaponSets::addMeleeWP(Weapon wp) {
-    list_Mele_WP.push_back(wp);
+void WeaponSets::addMeleeWP(const Weapon& wp) {
+    list_Melee_WP.push_back(wp);
 }
 
 std::vector<Weapon>::iterator WeaponSets::findWP_in_list(std::vector<Weapon> &wp_list, std::string &wp_name) {

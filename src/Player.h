@@ -6,7 +6,7 @@
 #define COUNTER_PLAYER_H
 
 #include <string>
-#include <stdint.h>
+#include <cstdint>
 #include <iostream>
 #include <algorithm>
 #include <utility>
@@ -25,7 +25,59 @@ typedef enum TeamID {
 
 class TimeController;
 
-class Player {
+class PlayerBase {
+public:
+    virtual void set_Is_alive(bool t) = 0;
+
+    [[nodiscard]] virtual TEAM_ID get_team_ID() const = 0;
+
+    [[nodiscard]] virtual std::string get_name() const = 0;
+
+    [[nodiscard]] virtual bool get_Is_alive() const = 0;
+
+    [[nodiscard]] virtual uint32_t getHealth() const = 0;
+
+    virtual void setHealth(uint32_t h) = 0;
+
+    virtual void reduceHealth(uint32_t damage) = 0;
+
+    [[nodiscard]] virtual uint32_t getMoney() const = 0;
+
+    virtual void setMoney(uint32_t m) = 0;
+
+    virtual void reduceMoney(uint32_t red_m) = 0;
+
+    virtual void increaseMoney(uint32_t inc_m) = 0;
+
+    [[nodiscard]] virtual uint32_t getNumber_of_kills() const = 0;
+
+    [[nodiscard]] virtual uint32_t getNumber_of_deaths() const = 0;
+
+    virtual void number_of_kills_Increment_one() = 0;
+
+    virtual void number_of_deaths_Increment_one() = 0;
+
+    virtual void setHeavy_weapon(Weapon *wp) = 0;
+
+    virtual void setLight_weapon(Weapon *wp) = 0;
+
+    virtual void removeHeavy_weapon() = 0;
+
+    virtual void removeLight_weapon() = 0;
+
+    virtual void setMele_weapon(Weapon *wp) = 0;
+
+    [[nodiscard]] virtual Weapon *getHeavy_weapon() const = 0;
+
+    [[nodiscard]] virtual Weapon *getLight_weapon() const = 0;
+
+    [[nodiscard]] virtual Weapon *getMele_weapon() const = 0;
+
+    [[nodiscard]] virtual uint32_t getPlayer_ID() const = 0;
+
+};
+
+class Player : public PlayerBase {
 public:
     Player() = delete;
 
@@ -33,53 +85,53 @@ public:
 
     virtual ~Player() = default;
 
-    void set_Is_alive(bool t);
+    void set_Is_alive(bool t) override;
 
-    const TEAM_ID get_team_ID() const;
+    [[nodiscard]] TEAM_ID get_team_ID() const override;
 
-    const std::string get_name() const;
+    [[nodiscard]] std::string get_name() const override;
 
-    bool get_Is_alive() const;
+    [[nodiscard]] bool get_Is_alive() const override;
 
-    uint32_t getHealth() const;
+    [[nodiscard]] uint32_t getHealth() const override;
 
-    void setHealth(uint32_t h);
+    void setHealth(uint32_t h) override;
 
-    void reduceHealth(uint32_t damage);
+    void reduceHealth(uint32_t damage) override;
 
-    uint32_t getMoney() const;
+    [[nodiscard]] uint32_t getMoney() const override;
 
-    void setMoney(uint32_t m);
+    void setMoney(uint32_t m) override;
 
-    void reduceMoney(uint32_t red_m);
+    void reduceMoney(uint32_t red_m) override;
 
-    void increaseMoney(uint32_t inc_m);
+    void increaseMoney(uint32_t inc_m) override;
 
-    uint32_t getNumber_of_kills() const;
+    [[nodiscard]] uint32_t getNumber_of_kills() const override;
 
-    uint32_t getNumber_of_deaths() const;
+    [[nodiscard]] uint32_t getNumber_of_deaths() const override;
 
-    void number_of_kills_Increment_one();
+    void number_of_kills_Increment_one() override;
 
-    void number_of_deaths_Increment_one();
+    void number_of_deaths_Increment_one() override;
 
-    void setHeavy_weapon(Weapon *wp);
+    void setHeavy_weapon(Weapon *wp) override;
 
-    void setLight_weapon(Weapon *wp);
+    void setLight_weapon(Weapon *wp) override;
 
-    void removeHeavy_weapon();
+    void removeHeavy_weapon() override;
 
-    void removeLight_weapon();
+    void removeLight_weapon() override;
 
-    void setMele_weapon(Weapon *wp);
+    void setMele_weapon(Weapon *wp) override;
 
-    Weapon *getHeavy_weapon() const;
+    [[nodiscard]] Weapon *getHeavy_weapon() const override;
 
-    Weapon *getLight_weapon() const;
+    [[nodiscard]] Weapon *getLight_weapon() const override;
 
-    Weapon *getMele_weapon() const;
+    [[nodiscard]] Weapon *getMele_weapon() const override;
 
-    uint32_t getPlayer_ID() const;
+    [[nodiscard]] uint32_t getPlayer_ID() const override;
 
 private:
 
@@ -99,37 +151,66 @@ private:
 
 };
 
-class Team {
+class TeamBase {
+public:
+    virtual void add_player(const Player &pl, TEAM_ID teamId) = 0;
+
+    [[nodiscard]] virtual bool check_team_is_full(TEAM_ID teamId) const = 0;
+
+    virtual Player &return_PLayer_by_username(std::string &username) = 0;
+
+    virtual bool find_player_by_username(std::string &username) const = 0;
+
+    virtual void sort_player_list() = 0;
+
+    virtual void reset_health_all_players() = 0;
+
+    virtual void increase_money_T_players(uint32_t money) = 0;
+
+    virtual void increase_money_CT_players(uint32_t money) = 0;
+
+    virtual void remove_heavy_pistol_wp_from_deads() = 0;
+
+    virtual uint32_t get_number_of_alive_T_player() = 0;
+
+    virtual uint32_t get_number_of_alive_CT_player() = 0;
+
+    virtual void print_lists_ct() = 0;
+
+    virtual void print_lists_t() = 0;
+};
+
+class Team : public TeamBase {
 public:
     Team() = default;
 
     virtual ~Team() = default;
 
-    void add_player(const Player& pl, TEAM_ID teamId);
+    void add_player(const Player &pl, TEAM_ID teamId) override;
 
-    bool check_team_is_full(TEAM_ID teamId) const;
+    [[nodiscard]] bool check_team_is_full(TEAM_ID teamId) const override;
 
-    Player &return_PLayer_by_username(std::string username);
+    Player &return_PLayer_by_username(std::string &username) override;
 
-    bool find_player_by_username(std::string username);
+    bool find_player_by_username(std::string &username) const override;
 
-    void sort_player_list();
+    void sort_player_list() override;
 
-    void reset_health_all_players();
+    void reset_health_all_players() override;
 
-    void increase_money_T_players(uint32_t money);
+    void increase_money_T_players(uint32_t money) override;
 
-    void increase_money_CT_players(uint32_t money);
+    void increase_money_CT_players(uint32_t money) override;
 
-    void remove_heavy_pistol_wp_from_deads();
+    void remove_heavy_pistol_wp_from_deads() override;
 
-    uint32_t get_number_of_alive_T_player();
+    uint32_t get_number_of_alive_T_player() override;
 
-    uint32_t get_number_of_alive_CT_player();
+    uint32_t get_number_of_alive_CT_player() override;
 
-    void print_lists_ct();
+    void print_lists_ct() override;
 
-    void print_lists_t();
+    void print_lists_t() override;
 
 private:
     OutputFormat m_OutputFormat;
