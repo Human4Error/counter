@@ -59,16 +59,16 @@ private:
 
     static bool check_player_have_specified_type_gun(const Player &A, WEAPON_TYPE wp_t);
 
-    static bool check_attacker_player_is_alive(Player &A) ;
+    static bool check_attacker_player_is_alive(Player &A);
 
-    static bool check_attacked_player_is_alive(Player &B) ;
+    static bool check_attacked_player_is_alive(Player &B);
 
-    static bool check_attacked_player_is_enemy(Player &A, Player &B) ;
+    static bool check_attacked_player_is_enemy(Player &A, Player &B);
 
 
-    [[nodiscard]] static uint32_t damage_of_weapon_attacker(const Player &A, WEAPON_TYPE wp_t) ;
+    [[nodiscard]] static uint32_t damage_of_weapon_attacker(const Player &A, WEAPON_TYPE wp_t);
 
-    [[nodiscard]] static uint32_t reward_gain_from_killing(const Player &A, WEAPON_TYPE wp_t) ;
+    [[nodiscard]] static uint32_t reward_gain_from_killing(const Player &A, WEAPON_TYPE wp_t);
 
     static void damage_attacked_player(Player &B, uint32_t wp_damage);
 
@@ -108,17 +108,17 @@ public:
 private:
     OutputFormat m_OutputFormat;
 
-    [[nodiscard]] static bool check_this_gun_is_valid_for_player(const Player &pl, WEAPON_USER_TYPE wp_user_t) ;
+    [[nodiscard]] static bool check_this_gun_is_valid_for_player(const Player &pl, WEAPON_USER_TYPE wp_user_t);
 
-    [[nodiscard]] static bool check_player_have_enough_money(const Player &pl, uint32_t wp_price) ;
+    [[nodiscard]] static bool check_player_have_enough_money(const Player &pl, uint32_t wp_price);
 
-    static bool check_time_is_valid_for_buying(uint32_t time, TimeController &time_con) ;
+    static bool check_time_is_valid_for_buying(uint32_t time, TimeController &time_con);
 
     static void deduction_player_money(Player &pl, uint32_t money);
 
     static void assign_weapon_for_player(Player &pl, std::vector<Weapon>::iterator &wp_it);
 
-    static bool check_player_now_have_this_gun(Player &pl, std::vector<Weapon>::iterator &wp_it) ;
+    static bool check_player_now_have_this_gun(Player &pl, std::vector<Weapon>::iterator &wp_it);
 
 
     inline static const std::string c_invalid_username = "invalid username";
@@ -162,6 +162,12 @@ public:
 class GameController : public GameControllerBase {
 public:
     GameController() = default;
+
+    // Copy c_tor
+    GameController(const GameController &_g) = default;
+
+    // move constructor
+    GameController(GameController &&_g) = default;
 
     virtual ~GameController() = default;
 

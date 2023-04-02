@@ -49,6 +49,18 @@ public:
            WEAPON_TYPE _wp_t,
            WEAPON_USER_TYPE _wp_user_t);
 
+    // Copy c_tor
+    Weapon(const Weapon &_w) = default;
+
+    // copy assignment
+    Weapon &operator=(const Weapon &_w) = default;
+
+    // move constructor
+    Weapon(Weapon &&_w) = default;
+
+    // move assignment
+    Weapon &operator=(Weapon &&_w) = default;
+
     ~Weapon() = default;
 
     [[nodiscard]] const std::string &getMName() const override;
@@ -83,14 +95,26 @@ public:
 
     ~WeaponSets() = default;
 
+    // Copy c_tor
+    WeaponSets(const WeaponSets &_w) = default;
+
+    // copy assignment
+    WeaponSets &operator=(const WeaponSets &_w) = default;
+
+    // move constructor
+    WeaponSets(WeaponSets &&_w) = default;
+
+    // move assignment
+    WeaponSets &operator=(WeaponSets &&_w) = default;
+
     std::vector<Weapon>::iterator findWP(std::string wp_name, bool &find_that_wp) override;
 
     /// dont use in this project.
-    [[maybe_unused]] void addHeavyWP(const Weapon& wp);
+    [[maybe_unused]] void addHeavyWP(const Weapon &wp);
 
-    [[maybe_unused]] void addLightWP(const Weapon& wp);
+    [[maybe_unused]] void addLightWP(const Weapon &wp);
 
-    [[maybe_unused]] void addMeleeWP(const Weapon& wp);
+    [[maybe_unused]] void addMeleeWP(const Weapon &wp);
 
 private:
     std::vector<Weapon>::iterator findWP_in_list(std::vector<Weapon> &wp_list, std::string &wp_name);

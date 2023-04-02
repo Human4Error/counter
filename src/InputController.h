@@ -41,6 +41,18 @@ public:
 
     virtual ~InputController() = default;
 
+    // Copy c_tor
+    InputController(const InputController &_i) = default;
+
+    // copy assignment
+    InputController &operator=(const InputController &_i) = default;
+
+    // move constructor
+    InputController(InputController &&_i) = default;
+
+    // move assignment
+    InputController &operator=(InputController &&_i) = default;
+
     void start_cli(GameControllerBase *game_con) override;
 
 private:

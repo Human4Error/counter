@@ -83,6 +83,18 @@ public:
 
     Player(std::string user_name, TEAM_ID team_ID, uint32_t pl_ID);
 
+    // Copy c_tor
+    Player(const Player &_p) = default;
+
+    // copy assignment
+    Player &operator=(const Player &_p) = default;
+
+    // move constructor
+    Player(Player &&_p) = default;
+
+    // move assignment
+    Player &operator=(Player &&_p) = default;
+
     virtual ~Player() = default;
 
     void set_Is_alive(bool t) override;
@@ -183,6 +195,12 @@ public:
 class Team : public TeamBase {
 public:
     Team() = default;
+
+    // Copy c_tor
+    Team(const Team &_t) = default;
+
+    // move constructor
+    Team(Team &&_t) = default;
 
     virtual ~Team() = default;
 

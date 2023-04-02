@@ -11,9 +11,21 @@ class OutputFormat {
 public:
     OutputFormat() = default;
 
+    // Copy c_tor
+    OutputFormat(const OutputFormat &_o) = default;
+
+    // copy assignment
+    OutputFormat &operator=(const OutputFormat &_o) = default;
+
+    // move constructor
+    OutputFormat(OutputFormat &&_o) = default;
+
+    // move assignment
+    OutputFormat &operator=(OutputFormat &&_o) = default;
+
     ~OutputFormat() = default;
 
-    static void print_line(const std::string& out_str) {
+    static void print_line(const std::string &out_str) {
         std::cout << out_str << std::endl;
     }
 
