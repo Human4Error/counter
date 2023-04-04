@@ -80,10 +80,11 @@ TEST_F(GameControllerTest, ShopControllerCheckErrors1) {
     EXPECT_CALL(Out_con, print_line(c_no_enough_money))
             .Times(1);
     // Act
-    g_con->cmd_buy("terr1","AK","00:20:320");
+    g_con->cmd_buy("terr1", "AK", "00:20:320");
     // Assert
     //Check by calling
 }
+
 TEST_F(GameControllerTest, ShopControllerCheckErrors2) {
     // Arrange
     AddUsers();
@@ -92,10 +93,11 @@ TEST_F(GameControllerTest, ShopControllerCheckErrors2) {
             .Times(1);
 
     // Act
-    g_con->cmd_buy("bibi","AK","00:20:320");
+    g_con->cmd_buy("bibi", "AK", "00:20:320");
     // Assert
     //Check by calling
 }
+
 TEST_F(GameControllerTest, ShopControllerCheckErrors3) {
     // Arrange
     AddUsers();
@@ -103,10 +105,11 @@ TEST_F(GameControllerTest, ShopControllerCheckErrors3) {
     EXPECT_CALL(Out_con, print_line(c_out_of_time))
             .Times(1);
     // Act
-    g_con->cmd_buy("terr1","Glock-18","01:20:320");
+    g_con->cmd_buy("terr1", "Glock-18", "01:20:320");
     // Assert
     //Check by calling
 }
+
 TEST_F(GameControllerTest, ShopControllerCheckErrors4) {
     // Arrange
     AddUsers();
@@ -115,11 +118,12 @@ TEST_F(GameControllerTest, ShopControllerCheckErrors4) {
             .Times(2);
 
     // Act
-    g_con->cmd_buy("terr1","UPS-S","00:20:320");
-    g_con->cmd_buy("Ct1","Glock-18","00:20:320");
+    g_con->cmd_buy("terr1", "UPS-S", "00:20:320");
+    g_con->cmd_buy("Ct1", "Glock-18", "00:20:320");
     // Assert
     //Check by calling
 }
+
 TEST_F(GameControllerTest, ShopControllerCheckErrors5) {
     // Arrange
     AddUsers();
@@ -130,41 +134,44 @@ TEST_F(GameControllerTest, ShopControllerCheckErrors5) {
             .Times(1);
 
     // Act
-    g_con->cmd_buy("terr3","UPS-S","00:20:320");
+    g_con->cmd_buy("terr3", "UPS-S", "00:20:320");
     // Assert
     //Check by calling
 }
+
 TEST_F(GameControllerTest, ShopControllerCheckErrors6) {
     // Arrange
     AddUsers();
-    g_con->cmd_buy("terr1","Glock-18","00:20:320");
+    g_con->cmd_buy("terr1", "Glock-18", "00:20:320");
 
     // Expectations
     EXPECT_CALL(Out_con, print_line(c_you_have_a_pistol))
             .Times(1);
 
     // Act
-    g_con->cmd_buy("terr1","Revolver","00:20:320");
+    g_con->cmd_buy("terr1", "Revolver", "00:20:320");
     // Assert
     //Check by calling
 }
+
 TEST_F(GameControllerTest, ShopControllerCheckErrors7) {
     // Arrange
     AddUsers();
     g_con->result_end_round();
     g_con->result_end_round();
 
-    g_con->cmd_buy("Ct1","M4A1","00:20:320");
+    g_con->cmd_buy("Ct1", "M4A1", "00:20:320");
     g_con->result_end_round();
     // Expectations
     EXPECT_CALL(Out_con, print_line(c_you_have_a_heavy))
             .Times(1);
 
     // Act
-    g_con->cmd_buy("Ct1","AWP","00:20:320");
+    g_con->cmd_buy("Ct1", "AWP", "00:20:320");
     // Assert
     //Check by calling
 }
+
 TEST_F(GameControllerTest, ShopControllerCheck) {
     // Arrange
     AddUsers();
@@ -176,11 +183,10 @@ TEST_F(GameControllerTest, ShopControllerCheck) {
             .Times(1);
 
     // Act
-    g_con->cmd_buy("Ct1","M4A1","00:20:320");
+    g_con->cmd_buy("Ct1", "M4A1", "00:20:320");
     // Assert
     //Check by calling
 }
-
 
 
 TEST_F(GameControllerTest, ShootingControllerCheckErrors1) {
@@ -193,24 +199,98 @@ TEST_F(GameControllerTest, ShootingControllerCheckErrors1) {
             .Times(1);
 
     // Act
-    g_con->cmd_tap("terr3","Ct1","knife","00:20:320");
+    g_con->cmd_tap("terr3", "Ct1", "knife", "00:20:320");
     // Assert
     //Check by calling
 }
+
 TEST_F(GameControllerTest, ShootingControllerCheckErrors2) {
     // Arrange
     AddUsers();
     g_con->cmd_add_user("terr3", "Terrorist", "00:03:001");
 
     // Expectations
-    EXPECT_CALL(Out_con, print_line(c_attacked_is_dead))
-            .Times(1);
+    EXPECT_CALL(Out_con, print_line(c_attacked_is_dead)).Times(1);
 
     // Act
-    g_con->cmd_tap("Ct1","terr3","knife","00:20:320");
+    g_con->cmd_tap("Ct1", "terr3", "knife", "00:20:320");
     // Assert
     //Check by calling
 }
+
+TEST_F(GameControllerTest, ShootingControllerCheckErrors3) {
+    // Arrange
+    AddUsers();
+    // Expectations
+    EXPECT_CALL(Out_con, print_line(c_no_such_gun)).Times(2);
+    // Act
+    g_con->cmd_tap("Ct1", "terr1", "heavy", "00:20:320");
+    g_con->cmd_tap("Ct1", "terr1", "pistol", "00:20:320");
+    // Assert
+    //Check by calling
+}
+
+TEST_F(GameControllerTest, ShootingControllerCheckErrors4) {
+    // Arrange
+    AddUsers();
+    // Expectations
+    EXPECT_CALL(Out_con, print_line(c_friendly_fire)).Times(1);
+    // Act
+    g_con->cmd_tap("Ct1", "Ct2", "knife", "00:20:320");
+    // Assert
+    //Check by calling
+}
+
+TEST_F(GameControllerTest, ShootingControllerCheck) {
+    // Arrange
+    AddUsers();
+    g_con->result_end_round();
+    g_con->result_end_round();
+    g_con->cmd_buy("Ct1", "AWP", "00:20:320");
+    g_con->cmd_buy("Ct1", "UPS-S", "00:20:320");
+
+    // Expectations
+    EXPECT_CALL(Out_con, print_line(c_nice_shot)).Times(3);
+    // Act
+    g_con->cmd_tap("Ct1", "terr1", "knife", "00:20:320");
+    g_con->cmd_tap("Ct1", "terr1", "pistol", "00:20:320");
+    g_con->cmd_tap("Ct1", "terr1", "heavy", "00:20:320");
+    // Assert
+    //Check by calling
+}
+
+TEST_F(GameControllerTest, GetHealth) {
+    // Arrange
+    AddUsers();
+    g_con->result_end_round();
+    g_con->result_end_round();
+    g_con->cmd_buy("Ct1", "AWP", "00:20:320");
+    g_con->cmd_buy("Ct1", "UPS-S", "00:20:321");
+
+    g_con->cmd_tap("Ct1", "terr1", "knife", "00:21:320");
+    g_con->cmd_tap("Ct1", "terr1", "pistol", "00:22:320");
+
+    EXPECT_CALL(Out_con, print_line(std::to_string(44))).Times(1);
+    g_con->cmd_get_health("terr1", "00:21:321");
+
+}
+TEST_F(GameControllerTest, GetMoney) {
+    // Arrange
+    AddUsers();
+    g_con->result_end_round();
+    g_con->result_end_round();
+    g_con->cmd_buy("Ct1", "AWP", "00:20:320");
+    g_con->cmd_tap("Ct1", "terr1", "heavy", "00:22:320");
+
+    EXPECT_CALL(Out_con, print_line(std::to_string(2700+2700+1000-4300+50))).Times(1);
+    g_con->cmd_get_money("Ct1", "00:21:321");
+
+}
+
+
+
+
+
 
 
 
