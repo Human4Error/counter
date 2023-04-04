@@ -71,3 +71,5 @@
 16	8407	7023049628942794	Google_tests/CMakeFiles/Google_Tests_run.dir/PlayerTEST.cpp.obj	7cdaea55378010a6
 25	11050	7023049655382789	Google_tests/CMakeFiles/Google_Tests_run.dir/InputControllerTEST.cpp.obj	e8a9289ea7e7e613
 11050	18440	7023049729212723	Google_tests/Google_Tests_run.exe	9ecaff6a9ed5450c
+10	3433	7023057762045406	Google_tests/CMakeFiles/Google_Tests_run.dir/WeaponTEST.cpp.obj	69ee69fdef231fbc
+3434	9592	7023057823405382	Google_tests/Google_Tests_run.exe	9ecaff6a9ed5450c
