@@ -42,7 +42,7 @@ private:
 
 class ShootingControllerBase {
 
-    virtual void shoot_player(Player &A, Player &B, WEAPON_TYPE wp_t) = 0;
+    virtual std::string shoot_player(Player &A, Player &B, WEAPON_TYPE wp_t) = 0;
 
 };
 
@@ -52,11 +52,9 @@ public:
 
     ~ShootingController() = default;
 
-    void shoot_player(Player &A, Player &B, WEAPON_TYPE wp_t) override;
+    [[nodiscard]] std::string shoot_player(Player &A, Player &B, WEAPON_TYPE wp_t) override;
 
 private:
-    OutputFormat m_OutputFormat;
-
     static bool check_player_have_specified_type_gun(const Player &A, WEAPON_TYPE wp_t);
 
     static bool check_attacker_player_is_alive(Player &A);
@@ -88,8 +86,8 @@ private:
 
 class ShopControllerBase {
 
-    virtual void buy_gun_for_player(Player &pl, WeaponSets &wp_set, std::string weapon,
-                                    uint32_t time, TimeController &time_con) = 0;
+    virtual std::string buy_gun_for_player(Player &pl, WeaponSets &wp_set, std::string weapon,
+                                           uint32_t time, TimeController &time_con) = 0;
 
     virtual void set_knife_for_new_players(Player &pl, WeaponSets &wp_set, std::string weapon) = 0;
 };
@@ -100,14 +98,12 @@ public:
 
     virtual ~ShopController() = default;
 
-    void buy_gun_for_player(Player &pl, WeaponSets &wp_set, std::string weapon,
-                            uint32_t time, TimeController &time_con) override;
+    [[nodiscard]] std::string buy_gun_for_player(Player &pl, WeaponSets &wp_set, std::string weapon,
+                                                 uint32_t time, TimeController &time_con) override;
 
     void set_knife_for_new_players(Player &pl, WeaponSets &wp_set, std::string weapon) override;
 
 private:
-    OutputFormat m_OutputFormat;
-
     [[nodiscard]] static bool check_this_gun_is_valid_for_player(const Player &pl, WEAPON_USER_TYPE wp_user_t);
 
     [[nodiscard]] static bool check_player_have_enough_money(const Player &pl, uint32_t wp_price);
@@ -161,7 +157,9 @@ public:
 
 class GameController : public GameControllerBase {
 public:
-    GameController() = default;
+    explicit GameController(OutputFormat *_o) : m_OutputFormat(_o){
+
+    }
 
     // Copy c_tor
     GameController(const GameController &_g) = default;
@@ -221,7 +219,7 @@ private:
     ShootingController m_shoot_c{};
     TimeController m_time_control;
     Team m_team;
-    OutputFormat m_OutputFormat;
+    OutputFormat* m_OutputFormat;
 };
 
 

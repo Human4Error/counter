@@ -20,26 +20,22 @@ uint32_t TimeController::get_max_time_to_buy_ms() const {
 }
 
 
-void ShootingController::shoot_player(Player &A, Player &B, WEAPON_TYPE wp_t) {
+std::string ShootingController::shoot_player(Player &A, Player &B, WEAPON_TYPE wp_t) {
 
     if (!(this->check_attacker_player_is_alive(A))) {
-        OutputFormat::print_line(c_attacker_is_dead);
-        return;
+        return c_attacker_is_dead;
     }
 
     if (!(this->check_attacked_player_is_alive(B))) {
-        OutputFormat::print_line(c_attacked_is_dead);
-        return;
+        return c_attacked_is_dead;
     }
 
     if (!(this->check_player_have_specified_type_gun(A, wp_t))) {
-        OutputFormat::print_line(c_no_such_gun);
-        return;
+        return c_no_such_gun;
     }
 
     if (!(this->check_attacked_player_is_enemy(A, B))) {
-        OutputFormat::print_line(c_friendly_fire);
-        return;
+        return c_friendly_fire;
     }
 
     // shooting is valid _register it
@@ -49,8 +45,7 @@ void ShootingController::shoot_player(Player &A, Player &B, WEAPON_TYPE wp_t) {
         update_money_of_killer_player(A, reward_gain_from_killing(A, wp_t));
         update_number_of_two_player_kills_deaths(A, B);
     }
-    OutputFormat::print_line(c_nice_shot);
-
+    return c_nice_shot;
 }
 
 bool ShootingController::check_player_have_specified_type_gun(const Player &A, const WEAPON_TYPE wp_t) {
@@ -132,17 +127,15 @@ void ShootingController::update_number_of_two_player_kills_deaths(Player &A, Pla
     B.number_of_deaths_Increment_one();
 }
 
-void ShopController::buy_gun_for_player(Player &pl, WeaponSets &wp_set, std::string weapon, uint32_t time,
-                                        TimeController &time_con) {
+std::string ShopController::buy_gun_for_player(Player &pl, WeaponSets &wp_set, std::string weapon, uint32_t time,
+                                               TimeController &time_con) {
 
     if (!pl.get_Is_alive()) {
-        OutputFormat::print_line(c_deads_can_not_buy);
-        return;
+        return c_deads_can_not_buy;
     }
 
     if (!(this->check_time_is_valid_for_buying(time, time_con))) {
-        OutputFormat::print_line(c_out_of_time);
-        return;
+        return c_out_of_time;
     }
 
     bool wp_find = false;
@@ -150,37 +143,32 @@ void ShopController::buy_gun_for_player(Player &pl, WeaponSets &wp_set, std::str
     if (wp_find == true) {
 
         if (!(this->check_this_gun_is_valid_for_player(pl, wp_it->getWpUser()))) {
-            OutputFormat::print_line(c_invalid_gun_category);
-            return;
+            return c_invalid_gun_category;
         }
 
         if (wp_it->getMName() == "knife") {
-            OutputFormat::print_line(c_invalid_gun_category);
-            return;
+            return c_invalid_gun_category;
         }
 
         if (this->check_player_now_have_this_gun(pl, wp_it)) {
             if (wp_it->getWpType() == HEAVY_WP) {
-                OutputFormat::print_line(c_you_have_a_heavy);
+                return c_you_have_a_heavy;
             } else {
-                OutputFormat::print_line(c_you_have_a_pistol);
-
+                return c_you_have_a_pistol;
             }
-            return;
         }
         // player not have this
         if (this->check_player_have_enough_money(pl, wp_it->getMPrice())) { /// check player have money
 
             this->deduction_player_money(pl, wp_it->getMPrice());
             this->assign_weapon_for_player(pl, wp_it);
-            OutputFormat::print_line(c_hope_use);
+            return c_hope_use;
         } else {
-            OutputFormat::print_line(c_no_enough_money);
+            return c_no_enough_money;
         }
 
     } else { // wp not founded
-        OutputFormat::print_line(c_invalid_gun_category);
-        return;
+        return c_invalid_gun_category;
     }
 }
 
@@ -263,15 +251,15 @@ void GameController::result_end_round() {
     uint32_t ct_alive = m_team.get_number_of_alive_CT_player();
 
     if (((t_alive == 0) && (ct_alive == 0)) || ((t_alive != 0) && (ct_alive != 0))) {
-        OutputFormat::print_line(c_ct_won);
+        m_OutputFormat->print_line(c_ct_won);
         m_team.increase_money_CT_players(c_winner_prize);
         m_team.increase_money_T_players(c_loser_prize);
     } else if (t_alive == 0) {
-        OutputFormat::print_line(c_ct_won);
+        m_OutputFormat->print_line(c_ct_won);
         m_team.increase_money_CT_players(c_winner_prize);
         m_team.increase_money_T_players(c_loser_prize);
     } else if (ct_alive == 0) {
-        OutputFormat::print_line(c_t_won);
+        m_OutputFormat->print_line(c_t_won);
         m_team.increase_money_CT_players(c_loser_prize);
         m_team.increase_money_T_players(c_winner_prize);
     }
@@ -281,14 +269,14 @@ void GameController::result_end_round() {
 void GameController::cmd_add_user(std::string username, std::string team_str, std::string time_str) {
 
     if (check_have_player_by_this_username(username)) {
-        OutputFormat::print_line(c_you_are_already_in_game);
+        m_OutputFormat->print_line(c_you_are_already_in_game);
         return;
     }
     TEAM_ID team_id = find_team_ID(team_str);
     uint32_t cmd_time = Game_time_str2time_stamp_ms(time_str);
 
     if (check_team_is_full(team_id)) {
-        OutputFormat::print_line(c_team_is_full);
+        m_OutputFormat->print_line(c_team_is_full);
         return;
     }
 
@@ -301,68 +289,71 @@ void GameController::cmd_add_user(std::string username, std::string team_str, st
     m_shop_c.set_knife_for_new_players(new_Player, m_wp_sets, "knife");
     m_team.add_player(new_Player, team_id);
     if (team_id == TERRORIST) {
-        OutputFormat::print_line(c_user_added_T);
+        m_OutputFormat->print_line(c_user_added_T);
     } else {
-        OutputFormat::print_line(c_user_added_CT);
+        m_OutputFormat->print_line(c_user_added_CT);
     }
 
 }
 
 void GameController::cmd_get_money(std::string username, std::string time_str) {
     if (!check_have_player_by_this_username(username)) {
-        OutputFormat::print_line(c_invalid_username);
+        m_OutputFormat->print_line(c_invalid_username);
         return;
     }
     uint32_t player_money = m_team.return_PLayer_by_username(username).getMoney();
-    OutputFormat::print_line(std::to_string(player_money));
+    m_OutputFormat->print_line(std::to_string(player_money));
 }
 
 void GameController::cmd_get_health(std::string username, std::string time_str) {
     if (!check_have_player_by_this_username(username)) {
-        OutputFormat::print_line(c_invalid_username);
+        m_OutputFormat->print_line(c_invalid_username);
         return;
     }
     uint32_t player_health = m_team.return_PLayer_by_username(username).getHealth();
-    OutputFormat::print_line(std::to_string(player_health));
+    m_OutputFormat->print_line(std::to_string(player_health));
 }
 
 void GameController::cmd_tap(std::string username_attacker, std::string username_attacked, std::string wp_type_str,
                              std::string time_str) {
     if (!check_have_player_by_this_username(username_attacker)) {
-        OutputFormat::print_line(c_invalid_username);
+        m_OutputFormat->print_line(c_invalid_username);
         return;
     }
     if (!check_have_player_by_this_username(username_attacked)) {
-        OutputFormat::print_line(c_invalid_username);
+        m_OutputFormat->print_line(c_invalid_username);
         return;
     }
-
-    m_shoot_c.shoot_player(m_team.return_PLayer_by_username(username_attacker),
-                           m_team.return_PLayer_by_username(username_attacked),
-                           find_weapon_type(wp_type_str));
-
+    std::string out_str;
+    out_str = m_shoot_c.shoot_player(m_team.return_PLayer_by_username(username_attacker),
+                                     m_team.return_PLayer_by_username(username_attacked),
+                                     find_weapon_type(wp_type_str));
+    m_OutputFormat->print_line(out_str);
 
 }
 
 void GameController::cmd_buy(std::string username, std::string gun_name_str, std::string time_str) {
 
     if (!check_have_player_by_this_username(username)) {
-        OutputFormat::print_line(c_invalid_username);
+        m_OutputFormat->print_line(c_invalid_username);
         return;
     }
-    m_shop_c.buy_gun_for_player(m_team.return_PLayer_by_username(username),
-                                m_wp_sets,
-                                gun_name_str,
-                                Game_time_str2time_stamp_ms(time_str),
-                                m_time_control);
+    std::string out_str;
+    out_str = m_shop_c.buy_gun_for_player(m_team.return_PLayer_by_username(username),
+                                          m_wp_sets,
+                                          gun_name_str,
+                                          Game_time_str2time_stamp_ms(time_str),
+                                          m_time_control);
+    m_OutputFormat->print_line(out_str);
+
 }
 
 void GameController::cmd_show_score_board(std::string time_str) {
 
     m_team.sort_player_list();
-    OutputFormat::print_line(c_ct_players);
+    m_OutputFormat->print_line(c_ct_players);
     m_team.print_lists_ct();
-    OutputFormat::print_line(c_t_players);
+    m_OutputFormat->print_line(c_t_players);
     m_team.print_lists_t();
 }
 

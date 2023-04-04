@@ -15,7 +15,7 @@
 
 
 const uint32_t HEALTH_MAX = 100;
-const uint32_t HEALTH_MIN = 0;
+const int HEALTH_MIN = 0;
 const uint32_t MAX_MONEY = 10000;
 
 typedef enum TeamID {

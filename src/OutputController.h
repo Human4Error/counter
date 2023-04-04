@@ -25,7 +25,7 @@ public:
 
     ~OutputFormat() = default;
 
-    static void print_line(const std::string &out_str) {
+    virtual void print_line(const std::string &out_str) {
         std::cout << out_str << std::endl;
     }
 

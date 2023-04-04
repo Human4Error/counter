@@ -43,7 +43,7 @@ void Player::setHealth(uint32_t h) {
 }
 
 void Player::reduceHealth(uint32_t damage) {
-    int new_health = (int) m_health - (int) damage;
+    int new_health =  m_health -  damage;
     if (new_health <= HEALTH_MIN) {
         m_health = HEALTH_MIN;
         set_Is_alive(false);
@@ -296,7 +296,7 @@ void Team::print_lists_ct() {
         std::string line = std::to_string(rank) + " " + it->get_name() + " " +
                            std::to_string(it->getNumber_of_kills()) + " " +
                            std::to_string(it->getNumber_of_deaths());
-        OutputFormat::print_line(line);
+        m_OutputFormat.print_line(line);
         rank++;
     }
 
@@ -309,7 +309,7 @@ void Team::print_lists_t() {
         std::string line = std::to_string(rank) + " " + it->get_name() + " " +
                            std::to_string(it->getNumber_of_kills()) + " " +
                            std::to_string(it->getNumber_of_deaths());
-        OutputFormat::print_line(line);
+        m_OutputFormat.print_line(line);
         rank++;
     }
 }
