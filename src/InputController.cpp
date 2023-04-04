@@ -53,7 +53,7 @@ void InputController::translate_string_2_method(std::string cmd, GameControllerB
     std::string username;
     std::string time;
 
-    // todo have function map is better.
+    
     if (command_type == "ADD-USER") {
         std::string team_str;
         cmd_2_process >> username;
