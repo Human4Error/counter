@@ -52,36 +52,42 @@ build cmake_object_order_depends_target_counter: phony || CMakeFiles/counter.dir
 build CMakeFiles/counter.dir/main.cpp.obj: CXX_COMPILER__counter_Debug C$:/Users/Alireza/CLionProjects/counter/main.cpp || cmake_object_order_depends_target_counter
   DEP_FILE = CMakeFiles\counter.dir\main.cpp.obj.d
   FLAGS = -g
+  INCLUDES = -IC:/Users/Alireza/CLionProjects/counter/src
   OBJECT_DIR = CMakeFiles\counter.dir
   OBJECT_FILE_DIR = CMakeFiles\counter.dir
 
 build CMakeFiles/counter.dir/src/InputController.cpp.obj: CXX_COMPILER__counter_Debug C$:/Users/Alireza/CLionProjects/counter/src/InputController.cpp || cmake_object_order_depends_target_counter
   DEP_FILE = CMakeFiles\counter.dir\src\InputController.cpp.obj.d
   FLAGS = -g
+  INCLUDES = -IC:/Users/Alireza/CLionProjects/counter/src
   OBJECT_DIR = CMakeFiles\counter.dir
   OBJECT_FILE_DIR = CMakeFiles\counter.dir\src
 
 build CMakeFiles/counter.dir/src/GameController.cpp.obj: CXX_COMPILER__counter_Debug C$:/Users/Alireza/CLionProjects/counter/src/GameController.cpp || cmake_object_order_depends_target_counter
   DEP_FILE = CMakeFiles\counter.dir\src\GameController.cpp.obj.d
   FLAGS = -g
+  INCLUDES = -IC:/Users/Alireza/CLionProjects/counter/src
   OBJECT_DIR = CMakeFiles\counter.dir
   OBJECT_FILE_DIR = CMakeFiles\counter.dir\src
 
 build CMakeFiles/counter.dir/src/Player.cpp.obj: CXX_COMPILER__counter_Debug C$:/Users/Alireza/CLionProjects/counter/src/Player.cpp || cmake_object_order_depends_target_counter
   DEP_FILE = CMakeFiles\counter.dir\src\Player.cpp.obj.d
   FLAGS = -g
+  INCLUDES = -IC:/Users/Alireza/CLionProjects/counter/src
   OBJECT_DIR = CMakeFiles\counter.dir
   OBJECT_FILE_DIR = CMakeFiles\counter.dir\src
 
 build CMakeFiles/counter.dir/src/Weapon.cpp.obj: CXX_COMPILER__counter_Debug C$:/Users/Alireza/CLionProjects/counter/src/Weapon.cpp || cmake_object_order_depends_target_counter
   DEP_FILE = CMakeFiles\counter.dir\src\Weapon.cpp.obj.d
   FLAGS = -g
+  INCLUDES = -IC:/Users/Alireza/CLionProjects/counter/src
   OBJECT_DIR = CMakeFiles\counter.dir
   OBJECT_FILE_DIR = CMakeFiles\counter.dir\src
 
 build CMakeFiles/counter.dir/src/OutputController.cpp.obj: CXX_COMPILER__counter_Debug C$:/Users/Alireza/CLionProjects/counter/src/OutputController.cpp || cmake_object_order_depends_target_counter
   DEP_FILE = CMakeFiles\counter.dir\src\OutputController.cpp.obj.d
   FLAGS = -g
+  INCLUDES = -IC:/Users/Alireza/CLionProjects/counter/src
   OBJECT_DIR = CMakeFiles\counter.dir
   OBJECT_FILE_DIR = CMakeFiles\counter.dir\src
 
