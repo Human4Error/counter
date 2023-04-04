@@ -3,13 +3,13 @@
 //
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
+#include "GameController.h"
 
 
 
 
-/*
-TEST(SampleTest,test1){
+TEST(GameControlTest,test1){
     ASSERT_EQ(1, 1);
     ASSERT_EQ(1, 1);
     ASSERT_EQ(1, 1);
-}*/
+}

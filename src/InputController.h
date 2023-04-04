@@ -17,6 +17,8 @@ public:
 
     virtual void start_cli(GameControllerBase *game_con) = 0;
 
+    virtual void translate_string_2_method(std::string cmd, GameControllerBase *game_con) = 0;
+
 private:
     virtual uint32_t read_num_rounds() = 0;
 
@@ -27,8 +29,6 @@ private:
     virtual void setup_start_round(GameControllerBase *game_con) = 0;
 
     virtual void result_end_round(GameControllerBase *game_con) = 0;
-
-    virtual void translate_string_2_method(std::string cmd, GameControllerBase *game_con) = 0;
 
 
 };
@@ -55,6 +55,8 @@ public:
 
     void start_cli(GameControllerBase *game_con) override;
 
+    void translate_string_2_method(std::string cmd, GameControllerBase *game_con) override;
+
 private:
     uint32_t read_num_rounds() override;
 
@@ -65,8 +67,6 @@ private:
     void setup_start_round(GameControllerBase *game_con) override;
 
     void result_end_round(GameControllerBase *game_con) override;
-
-    void translate_string_2_method(std::string cmd, GameControllerBase *game_con) override;
 
 
 };

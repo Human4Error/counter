@@ -9,7 +9,12 @@ add_executable(Google_Tests_run
         InputControllerTEST.cpp
         OutputControllerTEST.cpp
         PlayerTEST.cpp
-        WeaponTEST.cpp)
+        WeaponTEST.cpp
+        ../src/GameController.cpp
+        ../src/Player.cpp
+        ../src/Weapon.cpp
+        ../src/InputController.cpp)
+
 target_include_directories(Google_Tests_run PRIVATE ../src/)
 
-target_link_libraries(Google_Tests_run gtest gtest_main)
+target_link_libraries(Google_Tests_run gtest gmock_main)

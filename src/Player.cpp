@@ -4,7 +4,8 @@
 
 #include "Player.h"
 
-Player::Player(std::string user_name, TEAM_ID team_ID, uint32_t pl_ID) : m_username(std::move(user_name)), m_teamID(team_ID),
+Player::Player(std::string user_name, TEAM_ID team_ID, uint32_t pl_ID) : m_username(std::move(user_name)),
+                                                                         m_teamID(team_ID),
                                                                          m_player_ID(pl_ID) {
 
 
@@ -155,7 +156,7 @@ bool Team::check_team_is_full(TEAM_ID teamId) const {
 
 }
 
-Player &Team::return_PLayer_by_username(std::string& username) {
+Player &Team::return_PLayer_by_username(std::string &username) {
     auto it = m_CT_player_list.begin();
     bool found = false;
     for (it = m_CT_player_list.begin(); it < m_CT_player_list.end(); ++it) {
@@ -176,15 +177,22 @@ Player &Team::return_PLayer_by_username(std::string& username) {
     return *it;
 }
 
-bool Team::find_player_by_username(std::string& username) const {
+Player &Team::return_PLayer_by_index(uint32_t index, TEAM_ID teamId) { /// just use for tests
+    if (teamId == TERRORIST) {
+        return m_T_player_list.at(index);
+    }
+    return m_CT_player_list.at(index);
+}
+
+bool Team::find_player_by_username(std::string &username) const {
 
 
-    for (const auto& p: m_CT_player_list) {
+    for (const auto &p: m_CT_player_list) {
         if (p.get_name() == username) {
             return true;
         }
     }
-    for (const auto& p: m_T_player_list) {
+    for (const auto &p: m_T_player_list) {
         if (p.get_name() == username) {
             return true;
         }
@@ -305,3 +313,5 @@ void Team::print_lists_t() {
         rank++;
     }
 }
+
+

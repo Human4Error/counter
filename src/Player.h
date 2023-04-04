@@ -171,6 +171,8 @@ public:
 
     virtual Player &return_PLayer_by_username(std::string &username) = 0;
 
+    virtual Player &return_PLayer_by_index(uint32_t index, TEAM_ID teamId) = 0;
+
     virtual bool find_player_by_username(std::string &username) const = 0;
 
     virtual void sort_player_list() = 0;
@@ -209,6 +211,8 @@ public:
     [[nodiscard]] bool check_team_is_full(TEAM_ID teamId) const override;
 
     Player &return_PLayer_by_username(std::string &username) override;
+
+    Player &return_PLayer_by_index(uint32_t index,TEAM_ID teamId) override;
 
     bool find_player_by_username(std::string &username) const override;
 
